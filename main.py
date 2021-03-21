@@ -15,7 +15,7 @@ def get_picture() -> dict:
     r = requests.get(url)
 
     if r.status_code == 200:
-
+        print("Bing return:" + r.content)
         try:
             today_pic = r.json()["images"][0]
 
@@ -45,7 +45,9 @@ def post_picture(info: dict) -> bool:
     }
 
     r = requests.post("https://api.gaein.cn/SeeTheWorld/Pictures", data)
-    return r.status_code == 200
+    status_code = r.status_code
+    print("API return:" + status_code)
+    return status_code == 200
 
 
 if __name__ == '__main__':
@@ -59,6 +61,8 @@ if __name__ == '__main__':
                 print("Dump picture success.")
                 if post_result:
                     print("Post to API success.")
+                else:
+                    print("Post to API error!")
             else:
                 print(f"Dump picture to {dump_base} error!")
         else:
