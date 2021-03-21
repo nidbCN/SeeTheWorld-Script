@@ -1,4 +1,5 @@
 import requests
+import os
 
 dump_base = "/data/img/bing/"
 
@@ -31,9 +32,11 @@ def dump_picture(info: dict) -> bool:
     result = False
     r = requests.get(info["url"])
     try:
+        path = f"{dump_base}{info['name']}.jpg"
         if r.status_code == 200:
-            open(dump_base + info["name"] + ".jpg", "wb").write(r.content)
-        result = True
+            if os.path.exists(path):
+                open(path, "wb").write(r.content)
+                result = True
     finally:
         return result
 
