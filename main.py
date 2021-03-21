@@ -2,7 +2,7 @@ import requests
 import os
 
 dump_base = "/data/img/bing/"
-
+http_base = "https://img.cdn.gaein.cn/bing/"
 
 def get_picture() -> dict:
     result = {
@@ -43,11 +43,11 @@ def dump_picture(info: dict) -> bool:
 
 def post_picture(info: dict) -> bool:
     data = {
-        "name": info["title"],
-        "url": dump_base + info["name"] + ".jpg"
+        "title": info["title"],
+        "url": http_base + info["name"] + ".jpg"
     }
 
-    r = requests.post("https://api.gaein.cn/SeeTheWorld/Pictures", data)
+    r = requests.post("https://api.gaein.cn/SeeTheWorld/Pictures", json=data)
     status_code = r.status_code
     print("API return:" + str(status_code))
     return status_code == 200
