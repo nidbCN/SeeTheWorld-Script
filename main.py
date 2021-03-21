@@ -49,7 +49,7 @@ def post_picture(info: dict) -> bool:
 
     r = requests.post("https://api.gaein.cn/SeeTheWorld/Pictures", data)
     status_code = r.status_code
-    print("API return:" + status_code)
+    print("API return:" + str(status_code))
     return status_code == 200
 
 
