@@ -55,7 +55,7 @@ if __name__ == '__main__':
             print("Success get info from Bing.")
             dump_result = dump_picture(bing_pic_info)
             if dump_result:
-                post_result = post_picture()
+                post_result = post_picture(bing_pic_info)
                 print("Dump picture success.")
                 if post_result:
                     print("Post to API success.")
@@ -64,4 +64,4 @@ if __name__ == '__main__':
         else:
             print("Get picture info from Bing API error!")
     except Exception as e:
-        print("Error!" + e)
+        print("Error!" + str(e))
