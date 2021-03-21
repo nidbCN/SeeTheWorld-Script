@@ -15,7 +15,7 @@ def get_picture() -> dict:
     r = requests.get(url)
 
     if r.status_code == 200:
-        print("Bing return:" + r.content)
+        print("Bing return:" + r.text)
         try:
             today_pic = r.json()["images"][0]
 
