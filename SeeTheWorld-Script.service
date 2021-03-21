@@ -1,0 +1,5 @@
+[Unit]
+Description=Dump bing pictures
+
+[Service]
+ExecStart=/usr/bin/python3.9 -u /data/SeeTheWorld-Script/main.py

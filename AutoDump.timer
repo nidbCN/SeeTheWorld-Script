@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs SeeTheWorld every day.
+
+[Timer]
+OnUnitActiveSec=*-*-* 02:00:00
+Unit=SeeTheWorld-Script.service
+
+[Install]
+WantedBy=multi-user.target
