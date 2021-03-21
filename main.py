@@ -34,7 +34,7 @@ def dump_picture(info: dict) -> bool:
     try:
         path = f"{dump_base}{info['name']}.jpg"
         if r.status_code == 200:
-            if os.path.exists(path):
+            if not os.path.exists(path):
                 open(path, "wb").write(r.content)
                 result = True
     finally:
