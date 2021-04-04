@@ -2,7 +2,7 @@
 Description=Runs SeeTheWorld every day.
 
 [Timer]
-OnUnitActiveSec=*-*-* 02:00:00
+OnCalendar=*-*-* 01:00:00
 Unit=SeeTheWorld-Script.service
 
 [Install]
