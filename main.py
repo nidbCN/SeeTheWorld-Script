@@ -2,7 +2,10 @@ import requests
 import os
 
 dump_base = "/data/img/bing/"
+api_base = "https://api.gaein.cn/SeeTheWorld/"
 http_base = "https://img.cdn.gaein.cn/bing/"
+refresher_path = "/root/data/services/AliCDNRefresher/Release/AliCDNRefresher"
+
 
 def get_picture() -> dict:
     result = {
@@ -47,7 +50,7 @@ def post_picture(info: dict) -> bool:
         "url": http_base + info["name"] + ".jpg"
     }
 
-    r = requests.post("https://api.gaein.cn/SeeTheWorld/Pictures", json=data)
+    r = requests.post(api_base + "Pictures", json=data)
     status_code = r.status_code
     print("API return:" + str(status_code))
     return status_code == 204
@@ -64,6 +67,9 @@ if __name__ == '__main__':
                 print("Dump picture success.")
                 if post_result:
                     print("Post to API success.")
+                    print("Now refresh CDN.")
+                    os.system(refresher_path)
+                    print("Refresh complete")
                 else:
                     print("Post to API error!")
             else:
